@@ -1,0 +1,23 @@
+public class Solution {
+    public int reverse(int A) {
+        
+        int rev =0;
+        long pow=1;
+        boolean check = false;;
+        if(A<0){
+            check = true;
+            A=-A;
+        }
+        while(A>0){
+            int rem = A%10;
+            if(rev>= Integer.MAX_VALUE/10- rem ) return 0;
+            rev = rev*10+ rem;
+            // pow*=10;
+            A/=10;
+            
+            // System.out.println(rev + " " + pow + " " + rem);
+        }
+        if(check) rev=-rev;
+        return rev;
+    }
+}
