@@ -1,0 +1,36 @@
+public class Solution {
+    
+    public long fact(int num){
+        if(num==0 || num==1) return 1;
+        return (fact(num-1)*num);
+    }
+    
+    public static long small(String str, int start){
+        int count=0;
+        for(int i=start+1; i<str.length(); i++){
+            if(str.charAt(start)>str.charAt(i)) count++;
+        }
+        return count;
+    }
+    
+    public int findRank(String A) {
+        long rank=1;
+        int mod= 1000003, len = A.length();
+        // long fac = fact(len);
+        // for(int i=0; i<len; i++){
+        //     fac=(fac/(len-i));
+            
+        //     rank= (rank+ (int) (fac*small(A, i))); 
+        // }
+        // return (int) (rank%1000003);
+        long faculty = 1;
+        for (int i = A.length() - 1; i >= 0; --i) {
+            long numSmaller = small(A, i);
+            rank += (numSmaller * faculty) %mod;
+            faculty *= (A.length() - i);
+            faculty %= mod;
+        }
+        
+        return (int)((rank) %mod);
+    }
+}
