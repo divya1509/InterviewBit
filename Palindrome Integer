@@ -1,0 +1,31 @@
+public class Solution {
+    public int isPalindrome(int A) {
+        if(A<0) return 0;
+        if(A==0) return 1;
+        String ans ="";
+        int n= A;
+        while(n>0){
+            int rem = n%10;
+            // rev= rev*pow +rem;
+            // pow*=10;
+            ans = ans+ rem;
+            n/=10;
+        }
+        // System.out.println(ans);
+        int i=ans.length()-1;
+        while(i>=0){
+            if((ans.charAt(i)-'0')!= A%10) {
+                // System.out.println(A%10 + " " + ans.charAt(i) );
+                return 0;
+            }
+            i--;
+            A/=10;
+        }
+        
+        
+        // int t = Integer.parseInt(ans);
+        // if(t==A) return 1;
+        return 1;
+        
+    }
+}
