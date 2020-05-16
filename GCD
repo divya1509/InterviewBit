@@ -1,0 +1,13 @@
+public class Solution {
+    
+    public static int sol(int a, int b){
+        if(b==0) return a;
+        if(a%b==0) return b;
+        return sol(b, a%b);
+    }
+    
+    public int gcd(int A, int B) {
+        if(A>B) return sol(A, B);
+        return sol(B, A);
+    }
+}
