@@ -1,0 +1,33 @@
+public class Solution {
+    
+    public static boolean isPrime(int n){
+        if(n<2) return false;
+        if(n<=3) return true;
+        if(n%2==0 || n%3==0) return false;
+        
+        for(int i=5; i*i<=n; i+=6){
+            if(n%i==0 || n%(i+2)==0) return false;
+        }
+        
+        return true;
+    }
+    
+    public ArrayList<Integer> primesum(int A) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        if(A==4){
+            ans.add(2);
+            ans.add(2);
+            return ans;
+        }
+        
+        for(int i=3; i<=A/2; i+=2){
+            // System.out.println(i + " " + isPrime(i) + " " + (A-i)  + " "+ isPrime(A-i));
+            if(isPrime(i) && isPrime(A-i)){
+                ans.add(i);
+                ans.add(A-i);
+                break;
+            }
+        }
+        return ans;
+    }
+}
