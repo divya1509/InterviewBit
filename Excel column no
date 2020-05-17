@@ -1,0 +1,16 @@
+public class Solution {
+    public int titleToNumber(String A) {
+        
+        int ans=0, pow=1;
+        int i= 0;
+        while(i<A.length()){
+            char ch = A.charAt(i);
+            ans*=26;
+            ans+=(ch-'A' + 1);
+            i++;
+        }
+        
+        return ans;
+        
+    }
+}
