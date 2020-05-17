@@ -1,0 +1,20 @@
+public class Solution {
+    public String convertToTitle(int A) {
+        String ans = "";
+        while(A>0){
+            int rem= A%26;
+            if(rem!=0) {
+                rem--;
+                A/=26;
+            }
+            else {
+                rem= 25;
+                A/=26 ;
+                A--;
+            }
+            ans= (char)(rem+'A') + ans;
+        }
+        
+        return ans;
+    }
+}
