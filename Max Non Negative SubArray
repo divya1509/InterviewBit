@@ -1,0 +1,40 @@
+public class Solution {
+    public ArrayList<Integer> maxset(ArrayList<Integer> A) {
+        
+        int start =0, end=0, cs=0, j=0;
+        long max= Integer.MIN_VALUE, cmax=0;
+        while(j<A.size()){
+            if(A.get(j)<0) {
+                cs = j+1;
+                cmax= 0;
+            }else{
+                cmax+= A.get(j);
+                if(max==cmax){
+                    if(end-start< j- cs){
+                        max= cmax;
+                        start = cs;
+                        end=j;
+                    }else if(end- start==j-cs){
+                        if(start<=cs){
+                            max= cmax;
+                            start = cs;
+                            end=j;
+                        }
+                    }
+                }else if(max<cmax){
+                        max= cmax;
+                        start = cs;
+                        end=j;
+                    }
+                }
+            j++;
+        }
+        ArrayList<Integer> ans= new ArrayList<>();
+        for(int i=start; i<=end && A.get(i)>=0 ; i++ ) {
+            // System.out.print(A.get(i) + " " + i +" ");
+            ans.add( A.get(i));
+        }
+        return ans;
+        
+    }
+}
