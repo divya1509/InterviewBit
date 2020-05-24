@@ -1,0 +1,55 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> generateMatrix(int A) {
+        
+        int[][] dp = new int[A][A];
+        
+        int tne= A*A, minr =0, maxr = A-1, maxc = A-1, minc=0, c=1;
+        while(tne>0){
+            //top
+            
+            // System.out.println("tne "+ tne + "row "+ minr + " " + maxr +  " col "+ minc + " " +  maxc );
+            for(int i=minc; i<= maxc; i++){
+                // System.out.println("i" + i + " minr " + minr + " c " + c  );
+                dp[minr][i] = c;
+                c++;
+                tne--;
+            }minr++;
+            
+            //right
+            for(int i= minr; i<= maxr; i++){
+                // System.out.println("i" + i + " maxc " + maxc + " c " + c  );
+                dp[i][maxc]= c;
+                c++;
+                tne--;
+            }maxc--;
+            
+            //down
+            for(int i=maxc; i>= minc; i--){
+                // System.out.println("i" + i + " maxr " + maxr + " c " + c  );
+                dp[maxr][i]= c;
+                c++;
+                tne--;
+            }maxr--;
+            
+            //left
+            for(int i=maxr; i>= minr; i--){
+                // System.out.println("i" + i + " minc " + minc + " c " + c  );
+                dp[i][minc]= c;
+                c++;
+                tne--;
+            }minc++;
+        }
+        
+        // dp[minr][minc]= c;
+        
+        ArrayList<ArrayList<Integer> > ans = new ArrayList<>();
+        for(int i=0; i<dp.length; i++){
+            ans.add(new ArrayList<>());
+            for(int j=0; j<dp[0].length; j++ ) ans.get(i).add(dp[i][j]);
+        }
+        
+        return ans;
+        
+        
+    }
+}
