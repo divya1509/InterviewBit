@@ -1,0 +1,14 @@
+public class Solution {
+    public ArrayList<Integer> getRow(int A) {
+        
+         ArrayList<Integer> ans = new ArrayList<>();
+        int ncr= 1;
+        for(int r= 0; r<= A; r++){
+            ans.add(ncr);
+            ncr= ncr * (A-r)/(r+1);
+            
+        }
+        
+        return ans;
+    }
+}
