@@ -1,0 +1,31 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> diagonal(ArrayList<ArrayList<Integer>> A) {
+        
+        ArrayList<ArrayList<Integer> > ans = new ArrayList<>();
+        
+        for(int gap= 0; gap<A.get(0).size(); gap++ ){
+            ans.add(new ArrayList<>());
+            int cr=0, cc= gap;
+            while(cr<A.size() && cc>=0 ){
+                ans.get(gap).add(A.get(cr).get(cc));
+                cr++;
+                cc--;
+            }
+        }
+        
+        int i = ans.size();
+        for(int gap = 1; gap<A.size(); gap++ ){
+            ans.add(new ArrayList<>() );
+            int cc= A.get(0).size()-1, cr= gap;
+            while(cr<A.size()&& cc>=0 ){
+                ans.get(i).add(A.get(cr).get(cc) );
+                cr++;
+                cc--;
+            }
+            i++;
+            
+        }
+        
+        return ans;
+    }
+}
