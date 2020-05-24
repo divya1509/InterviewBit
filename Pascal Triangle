@@ -1,0 +1,17 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(int A) {
+        
+        ArrayList<ArrayList<Integer> > ans = new ArrayList<>();
+        for(int n=0; n<A; n++){
+            int ncr= 1;
+            ans.add(new ArrayList<>());
+            for(int r= 0; r<= n; r++){
+                ans.get(n).add(ncr);
+                ncr= ncr * (n-r)/(r+1);
+            }
+        }
+        
+        return ans;
+        
+    }
+}
