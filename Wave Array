@@ -1,0 +1,20 @@
+public class Solution {
+    
+    public static void swap(ArrayList<Integer> arr, int i, int j ){
+        int t= arr.get(i);
+        arr.set(i, arr.get(j) );
+        arr.set(j, t);
+    }
+    
+    public ArrayList<Integer> wave(ArrayList<Integer> A) {
+        
+        Collections.sort(A);
+        for(int i=1; i<A.size(); i+=2){
+            // if(A.get(i)>A.get(i-1) ) swap(A, i, i-1);
+            // if(i+1<A.size() && A.get(i)>A.get(i+1) ) swap(A, i, i+1);
+            swap(A, i, i-1);
+        }
+        
+        return A;
+    }
+}
