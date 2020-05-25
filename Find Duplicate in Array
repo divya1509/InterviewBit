@@ -1,3 +1,5 @@
+////////------------------------------------ O(nlogn) time and O(n) space-------------------------------/////////////////////////
+
 public class Solution {
     // DO NOT MODIFY THE LIST. IT IS READ ONLY
     public int repeatedNumber(final List<Integer> A) {
@@ -15,5 +17,46 @@ public class Solution {
         
         return -1;
         
+    }
+}
+
+
+
+///////////////-------------------------------  O(n) time and o(sqrt(n)) space-----------------------------//////////////////////
+
+
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int repeatedNumber(final List<Integer> A) {
+        int n = A.size() - 1;
+        int sqrtn = (int)(Math.ceil(Math.sqrt(n)));
+        int[] ranges = new int[sqrtn];
+        for(int i = 0; i < ranges.length; i++)
+            ranges[i] = 0;
+        for(int i = 0; i < A.size(); i++){
+            int bucket = (int)(Math.ceil(((double)A.get(i)) / sqrtn) - 1);
+            ranges[bucket]++;
+        }
+        int chosenBucket = (int)(Math.ceil(((double)n) / sqrtn) - 1);
+        for(int i = 0; i < ranges.length; i++)
+            if(ranges[i] > sqrtn)
+                chosenBucket = i;
+        
+        Set<Integer> counter = new HashSet<>();
+         for(int i = 0; i < A.size(); i++){
+             int currNumber = A.get(i);
+            int bucket = (int)(Math.ceil(((double)currNumber) / sqrtn) - 1);
+            if(bucket == chosenBucket){
+                if(counter.contains(currNumber)){
+                    return currNumber;
+                }else{
+                    counter.add(currNumber);
+                }
+            }
+        }
+        
+        // shouldnt get here
+        return -1;
     }
 }
