@@ -1,0 +1,57 @@
+public class Solution {
+    // static class pair{
+    //     int i, j;
+        
+    //     pair(int a, int b){
+    //         i=a;
+    //         j=b;
+    //     }
+    // }
+    
+    public void setZeroes(ArrayList<ArrayList<Integer>> a) {
+        // ArrayList<pair> arr= new ArrayList<pair>();
+        
+        // for(int i=0;i<a.size(); i++){
+        //     for(int j=0; j<a.get(0).size(); j++ ){
+        //         if(a.get(i).get(j)==0) arr.add(new pair(i, j));
+        //     }
+        // }
+        
+        // for(int p=0; p< arr.size(); p++ ){
+        //     pair curr = arr.get(p);
+            
+        //     for(int cr=0; cr<a.size(); cr++ ) a.get(cr).set(curr.j, 0);
+        //     for(int cc=0; cc<a.get(0).size(); cc++ ) a.get(curr.i).set(cc, 0);
+        // }
+        
+        boolean[] rows= new boolean[a.size()];
+        boolean[] cols= new boolean[a.get(0).size()];
+        
+        for(int i=0; i<a.size(); i++){
+            for(int j=0; j<a.get(i).size(); j++ ){
+                if(a.get(i).get(j)== 0 ){
+                    rows[i]= true;
+                    cols[j]= true;
+                }
+            }
+        }
+        
+        
+        for(int i=0; i<rows.length; i++ ){
+            if(rows[i]){
+                for(int j=0; j<a.get(0).size(); j++ ){
+                    a.get(i).set(j, 0);
+                }
+            }
+        }
+        for(int i=0; i<cols.length; i++ ){
+            if(cols[i]){
+                for(int j=0; j<a.size(); j++ ){
+                    a.get(j).set(i, 0);
+                }
+            }
+        }
+        
+        
+    }
+}
