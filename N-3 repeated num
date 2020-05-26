@@ -1,0 +1,36 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST
+    public int repeatedNumber(final List<Integer> a) {
+        
+        int s1=0, c1=0, s2=0, c2=0;
+        
+        for(int i=0; i <a.size(); i++ ){
+            if( s1==a.get(i) ) c1++;
+            else if(s2==a.get(i) ) c2++;
+            else if(c1==0 ) {
+                s1= a.get(i);
+                c1++;
+            }else if(c2==0) {
+                s2= a.get(i);
+                c2++;
+            }else {
+                c1--;
+                c2--;
+            }
+        }
+        
+        int count1=0, count2=0;
+        for(int i=0; i<a.size(); i++ )
+            if( a.get(i)==s1 ) count1++;
+            else if(a.get(i) ==s2) count2++;
+            
+        // System.out.println( "s1 " + s1 + " count " + count1 );
+        // System.out.println( "s2 " + s2 + " count " + count2 );
+        // System.out.println( "n/3 "+ a.size()/3 );
+        
+        if( count1> a.size()/3) return s1;
+        else if(count2>a.size()/3) return s2;
+        return -1;
+        
+    }
+}
