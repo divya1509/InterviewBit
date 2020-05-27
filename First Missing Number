@@ -1,0 +1,41 @@
+public class Solution {
+    public int firstMissingPositive(ArrayList<Integer> A) {
+        
+        // Set<Integer> arr= new HashSet<>();
+        
+        // for(int i=0; i<A.size(); i++){
+        //     if(A.get(i)>0 && A.get(i)<=A.size() && !arr.contains(A.get(i))) 
+        //         arr.add(A.get(i));
+        // }
+        
+        // for(int i=1; i<= A.size(); i++ ){
+        //     if(!arr.contains(i) ) return i;
+        // }
+        
+        // return A.size()+1;
+        
+        for(int i=0; i<A.size(); i++ ){
+            if(A.get(i)>0 && A.get(i)<=A.size() && A.get(A.get(i)-1)!= A.get(i)) {
+                // A.set( A.get(i)-1, A.get(i));
+                // System.out.print( A.get(i)-1 + " "); 
+                swap(A, i , A.get(i)-1);
+                i--;
+            }
+        }
+        
+        for(int i=0; i< A.size(); i++ ){
+            // System.out.print( A.get(i) + " "); 
+            if( A.get(i)!=i+1) return i+1;
+        }
+        
+        return A.size()+1;
+        
+        
+    }
+    
+    public static void swap( ArrayList<Integer> arr, int i, int j){
+        int temp = arr.get(i);
+        arr.set(i, arr.get(j));
+        arr.set(j, temp );
+    }
+}
