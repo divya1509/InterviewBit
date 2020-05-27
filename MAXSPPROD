@@ -1,0 +1,47 @@
+import java.math.*;
+public class Solution {
+    public int maxSpecialProduct(ArrayList<Integer> A) {
+        
+        int[] ngel = new int[A.size()];
+        int[] nger = new int[ A.size() ];
+        
+        Stack<Integer> s= new Stack<>();
+        s.push(0);
+        ngel[0]=0;
+        for(int i=1; i<A.size(); i++ ){
+            while( s.size()>0 && A.get(s.peek())<=A.get(i)){
+                s.pop();
+            }
+            
+            if(s.size()==0) ngel[i]= 0;
+            else ngel[i]= s.peek();
+            
+            s.push(i);
+        }
+        
+        while(s.size()>0 ) s.pop();
+        
+        s.push(A.size()-1);
+        nger[nger.length-1]=0;
+        for(int i=A.size()-2; i>=0; i--){
+            while( s.size()>0 && A.get(s.peek())<=A.get(i)){
+                s.pop();
+            }
+            
+            if(s.size()==0) nger[i]= 0;
+            else nger[i]= s.peek();
+            
+            s.push(i);
+        }
+        long product=0, res= 0;
+        for(int i=0;i<A.size();i++){
+            res= (long)(ngel[i]) * (long)(nger[i]);
+            if(product < res){
+                product  = res;
+            }
+        }
+        return (int)(product%1000000007);
+        
+        
+    }
+}
