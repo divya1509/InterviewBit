@@ -1,0 +1,23 @@
+public class Solution {
+    public void rotate(ArrayList<ArrayList<Integer>> a) {
+        
+        //transpose matrix
+        
+        for (int i = 0; i < a.size(); i++) 
+            for (int j = i+1; j < a.get(0).size(); j++) 
+            { 
+                 int temp = a.get(i).get(j); 
+                 a.get(i).set(j, a.get(j).get(i)); 
+                 a.get(j).set(i, temp); 
+            }  
+            
+        for(int i=0; i<a.size(); i++ ){
+            for(int j=0; j<(a.get(0).size())/2; j++ ){
+                int temp = a.get(i).get(j); 
+                 a.get(i).set(j, a.get(i).get(a.size()-1-j)); 
+                 a.get(i).set(a.size()-1-j, temp); 
+            }
+        }
+        
+    }
+}
