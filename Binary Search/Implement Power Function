@@ -1,0 +1,36 @@
+import java.math.BigInteger;
+public class Solution {
+    
+    //  static int sol(int a, int b){
+    //     if(b==0) return 1;
+    //     if(b==1) return a;
+        
+    //     int ans=1;
+    //     if(b%2==0) {
+    //         int x = sol(a,b/2);
+    //         ans= x*x;
+    //     }
+    //     else {
+    //         int x= sol(a,b/2);
+    //         int y= sol(a,b/2 +1);
+    //         ans= x*y;
+    //     }
+    //     return ans;
+    // }
+    
+    public int pow(int x, int n, int d) {
+        if(x==0)
+            return 0;
+        if(n==0)
+            return 1%d;
+        BigInteger bi = BigInteger.valueOf(x);
+        return bi.modPow(BigInteger.valueOf(n), BigInteger.valueOf(d)).intValue();
+        
+    }
+    
+    // public int pow(int x, int n, int d) {
+    //     int ans= sol(x,n);
+    //     if( ans<0) return ans+d;
+    //     return ans%d;
+    // }
+}
