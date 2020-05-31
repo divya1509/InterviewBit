@@ -1,0 +1,32 @@
+public class Solution {
+    static class pair implements Comparable<pair> {
+        int idx;
+        ArrayList<Integer> row;
+        
+        pair(int a, ArrayList<Integer> b){
+            idx= a;
+            row= b;
+        }
+        
+        public int compareTo(pair other){
+            return this.row.get(this.idx)- other.row.get(other.idx);
+        }
+    }
+    
+    public int findMedian(ArrayList<ArrayList<Integer>> A) {
+        PriorityQueue<pair> pq= new PriorityQueue<>();
+        
+        int n= A.size()* A.get(0).size();
+        n/=2;
+        for(int i=0; i<A.size(); i++ ) pq.add( new pair(0, A.get(i)));
+        
+        for(int i=0; i<n; i++){
+            pair curr= pq.remove();
+            if(curr.idx+1<A.get(0).size()) pq.add(new pair(curr.idx+1, curr.row) );
+        }
+        
+        pair ans = pq.remove();
+        return ans.row.get(ans.idx);
+        
+    }
+}
