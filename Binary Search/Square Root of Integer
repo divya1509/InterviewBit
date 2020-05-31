@@ -1,0 +1,25 @@
+public class Solution {
+    public int sqrt(int A) {
+        if(A==0 || A==1 ) return A;
+        
+        long l=1, r= A;
+        while(l<=r ){
+            long mid= (l+r)/2;
+            long t= mid*mid; 
+            if(t==A) return (int)mid;
+            else if(t< A ){
+                // int y= mid+1;
+                // long p = y*y;
+                // if(p<=A ) l = mid+1;
+                // else return mid;
+                // ans= mid;
+                l= mid+1;
+            }else r= mid-1; 
+            
+        }
+        
+        return (int) r;
+        // return (int)Math.floor((int) Math.sqrt(A) );
+        
+    }
+}
