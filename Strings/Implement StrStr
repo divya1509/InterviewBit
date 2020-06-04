@@ -1,0 +1,38 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int strStr(final String str, final String target) {
+        
+    //     int i=0, j;
+    //   for(j=0; j<str.length() && i<target.length(); j++){
+    //       System.out.print(str.charAt(j)+ " i " + i + "----" );
+    //       if(str.charAt(j)== target.charAt(i)) i++;
+    //       else if(str.charAt(j)==target.charAt(0)) i= 1;
+    //       else i=0;
+    //   }
+       
+    //   if(i==target.length()) return j-target.length();
+       
+    //   return -1;
+    
+    int idx= -1;
+    if(str.length()==0 || target.length()==0 ) return idx;
+    for(int i=0; i<str.length(); i++ ){
+        if(target.charAt(0)==str.charAt(i) ){
+            int j=0;
+            idx=i;
+            while(j<target.length() ){
+                if(i<str.length() && str.charAt(i)== target.charAt(j)){
+                    j++; i++;
+                }else{
+                    idx=-1;
+                    i-=j;
+                    break;
+                }
+            }
+            if(j==target.length()) return idx;
+        }
+    }
+    
+    return idx;
+    }
+}
