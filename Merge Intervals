@@ -1,0 +1,67 @@
+/**
+ * Definition for an interval.
+ * public class Interval {
+ *     int start;
+ *     int end;
+ *     Interval() { start = 0; end = 0; }
+ *     Interval(int s, int e) { start = s; end = e; }
+ * }
+ */
+public class Solution {
+    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
+        // ArrayList<Interval> ans= new ArrayList<>();
+        // int start=-1, end=-1;
+        // boolean done= false;
+        // for(int i=0; i<intervals.size(); i++){
+        //     if(intervals.get(i).start>newInterval.start && intervals.get(i).start>newInterval.end && !done){
+        //         if(i-1>=0){
+        //             end= Math.max(intervals.get(i-1).end , newInterval.end );
+        //             ans.add(new Interval(start,end ));
+        //         }else ans.add(newInterval);
+        //         i--;
+        //         done=true;
+        //     }
+        //     else if(intervals.get(i).end>= newInterval.start && !done){
+        //         if(start==-1) start= Math.min(newInterval.start, intervals.get(i).start );
+        //         // else if(newInterval.end<intervals.get(i).end ) end=Math.max(newInterval.end, intervals.get(i).end );
+                
+        //         else if(newInterval.end<intervals.get(i).end) {
+        //             end= Math.max(intervals.get(i).end , newInterval.end );
+        //             ans.add(new Interval(start,end ));
+        //             // ans.add(intervals.get(i));
+        //             start= Integer.MAX_VALUE;
+        //             done= true;
+        //             System.out.println("here 2");
+        //         }
+                
+        //         // System.out.println("here 3");
+        //     } 
+        //     else ans.add(intervals.get(i));
+            
+        //     // System.out.println();
+        // }
+        
+        // if(!done) ans.add(newInterval);
+        // return ans;
+        
+        
+        intervals.add(newInterval);
+        Collections.sort(intervals, new mycomp() );
+        ArrayList<Interval> ans= new ArrayList<>();
+        ans.add(intervals.get(0));
+        for(int i=1; i<intervals.size(); i++){
+            if(intervals.get(i).start<ans.get(ans.size()-1).end ){
+                int t= Math.max(ans.get(ans.size()-1).end, intervals.get(i).end );
+                ans.set(ans.size()-1, new Interval(ans.get(ans.size()-1).start, t ));
+            }else ans.add(intervals.get(i));
+        }
+        return ans;
+        
+    }
+    
+    class mycomp implements Comparator<Interval> { 
+        public int compare(Interval a, Interval b){ 
+            return a.start-b.start; 
+        } 
+    } 
+}
