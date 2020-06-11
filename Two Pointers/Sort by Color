@@ -1,0 +1,24 @@
+public class Solution {
+    
+    public static void swap(ArrayList<Integer> a, int i, int j){
+        int t= a.get(i);
+        a.set(i, a.get(j));
+        a.set(j, t);
+    }
+    
+    public void sortColors(ArrayList<Integer> a) {
+        int i=0, j=0, k=0;
+        while(k<a.size()){
+            if(a.get(k)==1){
+                swap(a, j, k );
+                j++;
+            }else if(a.get(k)==0 ){
+                swap(a, j, k);
+                swap(a,i , j);
+                i++;
+                j++;
+            }
+            k++;
+        }
+    }
+}
