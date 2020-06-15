@@ -1,0 +1,13 @@
+public class Solution {
+    public int maxArea(ArrayList<Integer> A) {
+        int max=0;
+        int i=0, j=A.size()-1, curr=0;
+        while(i<j){
+            curr=Math.min(A.get(j),A.get(i))*(j-i);
+            if(curr>max) max= curr;
+            if(A.get(i)>A.get(j)) j--;
+            else i++;
+        }
+        return max;
+    }
+}
