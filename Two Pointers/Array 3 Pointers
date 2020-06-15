@@ -1,0 +1,16 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int minimize(final List<Integer> A, final List<Integer> B, final List<Integer> C) {
+    
+        int i=0, j=0, k=0, ans= Integer.MAX_VALUE, curr=0;
+        while(i<A.size() && j<B.size() && k<C.size()){
+            curr= Math.max(Math.abs(A.get(i)- B.get(j))
+                    ,Math.max(Math.abs(C.get(k)- B.get(j)),Math.abs(A.get(i)- C.get(k))));  
+            if(curr<ans) ans= curr;
+            if(A.get(i)<=B.get(j) && A.get(i)<=C.get(k) ) i++;
+            else if(B.get(j)<=A.get(i) && B.get(j)<=C.get(k)) j++;
+            else k++;
+        }
+        return ans;
+    }
+}
