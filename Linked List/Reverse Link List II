@@ -1,0 +1,40 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseBetween(ListNode A, int B, int C) {
+        if (A == null || A.next == null) return A;
+        
+        ListNode slow = null, curr = A;
+        int temp = B;
+        while (-- B > 0){
+            slow = curr;
+            curr = curr.next;
+        }
+        
+        C = C - temp + 1;
+        ListNode prev = null, fut = null;
+        while (C -- > 0 && curr != null) {
+            fut = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = fut;
+        }
+        
+        
+        if(slow != null) {
+            slow.next.next = curr;
+            slow.next = prev;
+        }else {
+            A.next = curr;
+            return prev;
+        }
+        return A;
+        
+    }
+}
