@@ -1,0 +1,81 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public static ListNode mid(ListNode head){
+        if(head==null) return null;
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast.next!=null && fast.next.next!=null){
+            fast= fast.next.next;
+            slow= slow.next;
+        }
+        return slow;
+    }
+    
+     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1==null && l2==null) return null;
+        if(l1==null) return l2;
+        if(l2==null) return l1;
+        
+        ListNode prev= new ListNode(l1.val>l2.val?l2.val:l1.val);
+        if(l1.val>l2.val){
+                l2= l2.next;
+            } else{
+                l1 = l1.next;
+            }
+        ListNode head= prev;
+        
+        while(l1!=null && l2!=null){
+            ListNode curr= new ListNode(l1.val>l2.val?l2.val:l1.val);
+            prev.next = curr;
+            prev= curr;
+            if(l1.val>l2.val){
+                l2= l2.next;
+            } else{
+                l1 = l1.next;
+            }
+        }
+        if(l1!=null) prev.next = l1;
+        if(l2!=null) prev.next = l2;
+        return head;
+    }
+    
+//     public ListNode sort(ListNode left, ListNode right){
+//         if(left==right) return left;
+        
+//         ListNode mid = mid(left, right);
+//         System.out.println(mid.val);
+//         ListNode h1 = sort(left, mid);
+//         ListNode h2 = sort(mid.next, right);
+//         mid.next = null;
+//         // if(right!=null)right.next = null;
+        
+//         ListNode curr=mergeTwoLists(h1,h2);
+//         ListNode temp = curr;
+//         while(temp!=null){
+//             System.out.print(temp.val + " ");
+//             temp = temp.next;
+//         }
+//         System.out.println();
+//         return curr;
+//     }
+    
+    public ListNode sortList(ListNode head) {
+        if(head==null || head.next==null ) return head;
+        
+        ListNode mid = mid(head);
+        ListNode curr= mid.next;
+        mid.next=null;
+        ListNode h1=sortList(head);
+        ListNode h2 = sortList(curr);
+        return mergeTwoLists(h1, h2);
+    }
+}
