@@ -1,0 +1,19 @@
+public class Solution {
+    public int isValid(String A) {
+        Stack<Character> s = new Stack<>();
+        for(int i = 0; i < A.length(); i++) {
+            char ch = A.charAt(i);
+            if (ch == '(' || ch == '[' || ch == '{') {
+                s.push(ch);
+            } else {
+                if(ch == ')' && s.size() > 0 && s.peek() == '(') s.pop();
+                else if(ch == ']' && s.size() > 0 && s.peek() == '[') s.pop();
+                else if(ch == '}' && s.size() > 0 && s.peek() == '{') s.pop();
+                else return 0;
+            }
+        }
+        
+        if (s.size() > 0) return 0;
+        return 1;
+    }
+}
