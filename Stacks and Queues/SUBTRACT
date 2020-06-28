@@ -1,0 +1,31 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode subtract(ListNode A) {
+        if (A == null || A.next == null) return A;
+        ListNode slow = A, fast = A;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        ListNode curr = slow.next;
+        Stack<Integer> s = new Stack<>();
+        while (curr != null) {
+            s.push(curr.val);
+            curr = curr.next;
+        }
+        curr = A;
+        while (s.size() > 0) {
+            curr.val = s.pop() - curr.val;
+            curr = curr.next;
+        }
+        return A;
+    }
+}
