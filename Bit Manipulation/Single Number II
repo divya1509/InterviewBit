@@ -1,0 +1,19 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int singleNumber(final List<Integer> A) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for (int i = 0; i < A.size(); i++) {
+            if (hm.containsKey(A.get(i))) {
+                int val = hm.get(A.get(i));
+                hm.put(A.get(i), val + 1);
+            } else hm.put(A.get(i), 1);
+        }
+        
+        for(int i : hm.keySet()){
+            if (hm.get(i) == 1) {
+                return i;
+            }
+        }
+        return 0;
+    }
+}
