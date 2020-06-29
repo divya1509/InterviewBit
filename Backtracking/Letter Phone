@@ -1,0 +1,34 @@
+public class Solution {
+    
+    private static ArrayList<String> sol(String digits, String[] keys) {
+        if(digits.length() == 0) {
+            ArrayList<String> ans =  new ArrayList<>();
+            ans.add("");
+            return ans;
+        }
+        
+        ArrayList<String> recAns = sol(digits.substring(1), keys);
+        ArrayList<String> ans = new ArrayList<>();
+        int idx = digits.charAt(0) - '0';
+        String word = keys[idx];
+        
+        // System.out.println(idx + " " + word);
+        
+        for (int i = 0; i < word.length(); i++) {
+            // System.out.println("here");
+            char ch = word.charAt(i);
+            for (int j = 0; j < recAns.size(); j++) {
+                ans.add(ch + recAns.get(j));
+            }
+        }
+        // System.out.println(ans);
+        return ans;
+    }
+    
+    
+    public ArrayList<String> letterCombinations(String A) {
+        if(A.length() == 0) return new ArrayList<String>();
+        String[] keys = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        return sol(A, keys);
+    }
+}
