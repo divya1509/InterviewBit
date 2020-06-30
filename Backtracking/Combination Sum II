@@ -1,0 +1,29 @@
+public class Solution {
+    private static void sol(ArrayList<ArrayList<Integer>> ans, ArrayList<Integer> curr,
+                int idx, ArrayList<Integer> nums, int tar, Set<ArrayList<Integer>> s) {
+        
+        if (tar == 0) {
+            if(!s.contains(curr)) {
+                ArrayList<Integer> temp = new ArrayList<>(curr);
+                s.add(temp);
+                ans.add(temp);
+            }
+            return;
+        }
+        if (tar < 0 || idx == nums.size()) return;
+        curr.add(nums.get(idx));
+        sol(ans, curr, idx + 1, nums, tar - nums.get(idx), s);
+        curr.remove(curr.size() - 1);
+        sol(ans, curr, idx + 1, nums, tar, s);
+        
+    }
+    
+    public ArrayList<ArrayList<Integer>> combinationSum(ArrayList<Integer> a, int b) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> curr = new ArrayList<>();
+        Set<ArrayList<Integer>> s = new HashSet<>();
+        Collections.sort(a);
+        sol(ans, curr, 0, a, b, s);
+        return ans;
+    }
+}
