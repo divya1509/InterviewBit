@@ -1,0 +1,32 @@
+public class Solution {
+    static ArrayList<ArrayList<Integer>> sol(ArrayList<Integer> nums, int target, int idx, 
+                        ArrayList<Integer> track, ArrayList<ArrayList<Integer>> ans){
+        
+        if(target==0){
+            ans.add(new ArrayList<Integer>(track));
+            return ans;
+        }
+        if(target<0) return ans;
+        
+        for(int i=idx; i<nums.size(); i++ ){
+            track.add(nums.get(i));
+            sol(nums, target-nums.get(i) , i, track, ans  );
+            track.remove(track.size()-1);
+        }
+        // return sol( nums, target, idx+1, track, ans );
+        return ans;
+    }
+    
+    public ArrayList<ArrayList<Integer>> combinationSum(ArrayList<Integer> A, int B) {
+        ArrayList<ArrayList<Integer>> fans= new ArrayList<>();
+        ArrayList<Integer> pans= new ArrayList<Integer>();
+        Collections.sort(A);
+        ArrayList<Integer> nums = new ArrayList<>();
+        nums.add(A.get(0));
+        for(int i =1; i < A.size(); i++) {
+            if(A.get(i) != A.get(i - 1)) nums.add(A.get(i));
+        }
+        return sol(nums, B, 0, pans, fans);
+        
+    }
+}
