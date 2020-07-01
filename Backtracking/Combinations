@@ -1,0 +1,21 @@
+public class Solution {
+    private static void sol (int i, int n, int k,ArrayList<ArrayList<Integer>> ans, ArrayList<Integer> temp){
+        if(temp.size() == k) {
+            ans.add(new ArrayList<Integer>(temp));
+            return;
+        }
+        
+        for (int j = i; j <= n; j++) {
+            temp.add(j);
+            sol(j + 1, n, k, ans, temp);
+            temp.remove(temp.size() - 1);
+        }
+    }
+    
+    public ArrayList<ArrayList<Integer>> combine(int A, int B) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
+        sol(1, A, B, ans, temp);
+        return ans;
+    }
+}
