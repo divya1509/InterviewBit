@@ -1,0 +1,18 @@
+public class Solution {
+    private static void solve(ArrayList<String> ans, String temp, int sc, int ec, int n){
+        if(temp.length() == 2 * n){
+            // if(check(temp)) 
+            ans.add(temp);
+            return;
+        }
+        if(sc < n) solve(ans, temp + '(', sc + 1, ec, n);
+        if(ec < sc) solve(ans, temp + ')', sc, ec + 1, n);
+    }
+    
+    public ArrayList<String> generateParenthesis(int A) {
+        ArrayList<String> ans = new ArrayList<>();
+        String temp = "";
+        solve(ans, temp, 0 , 0, A);
+        return ans;
+    }
+}
