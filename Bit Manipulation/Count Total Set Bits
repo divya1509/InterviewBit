@@ -1,0 +1,9 @@
+public class Solution {
+    public int solve(int A) {
+        long ans = 0;
+        for(int i = 1; i <= A; i++) {
+            ans += Integer.bitCount(i);
+        }
+        return (int) (ans % 1000000007);
+    }
+}
