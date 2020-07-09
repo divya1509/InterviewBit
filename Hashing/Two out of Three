@@ -1,0 +1,36 @@
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<Integer> A, ArrayList<Integer> B, ArrayList<Integer> C) {
+    
+        Set<Integer> hm1 = new HashSet<>();
+        Set<Integer> hm2 = new HashSet<>();
+        Set<Integer> hm3 = new HashSet<>();
+        
+        for (int i = 0; i < A.size(); i++) {
+            hm1.add(A.get(i));
+        }
+        
+        for (int i = 0; i < B.size(); i++) {
+            hm2.add(B.get(i));
+        }
+        
+        for (int i = 0; i < C.size(); i++) {
+            hm3.add(C.get(i));
+        }
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        for (int ele : hm1) {
+            if(hm2.contains(ele) || hm3.contains(ele) ) {
+                if(!ans.contains(ele)) ans.add(ele);
+            }
+        }
+        
+        for (int ele : hm2) {
+            if(hm1.contains(ele) || hm3.contains(ele) ) {
+                if(!ans.contains(ele)) ans.add(ele);
+            }
+        }
+        
+        Collections.sort(ans);
+        return ans;
+    }
+}
