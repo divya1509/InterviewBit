@@ -1,0 +1,14 @@
+public class Solution {
+    public int solve(int A, int B, int C, int D) {
+        // int ans = A ^ B ^ C ^ D;
+        
+        // if(ans == 0) return 1;
+        // return 0;
+        
+        if(A == B && A == C && A == D) return 1;
+        if(A == B && C == D) return 1;
+        if(A == C && B == D) return 1;
+        if(A == D && C == B) return 1;
+        return 0;
+    }
+}
