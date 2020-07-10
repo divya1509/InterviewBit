@@ -1,0 +1,37 @@
+public class Solution {
+    public String solve(String A) {
+        // Set<Character> hs = new HashSet<>();
+        // HashMap<Character, Integer> hm = new HashMap<>();
+        int[] dp = new int[26];
+        Queue<Character> q = new LinkedList<>();
+        // String ans = "";
+        
+        StringBuilder ans = new StringBuilder();
+        
+        for (int i = 0; i < A.length(); i++) {
+            // if(hm.containsKey(A.charAt(i))){
+            //     hm.put(A.charAt(i), hm.get(A.charAt(i)) + 1);
+            // } else {
+            //     hm.put(A.charAt(i), 1);
+            //     q.add(A.charAt(i));
+            // }
+            
+            if(dp[A.charAt(i) - 'a'] == 0) {
+                q.add(A.charAt(i));
+            }
+            
+            dp[A.charAt(i) - 'a']++;
+            while(q.size() > 0 && dp[q.peek() - 'a'] > 1) {
+                q.poll();
+            }
+            
+            if(q.size() == 0) ans.append("#");
+            else {
+                ans.append(q.peek());
+            }
+        }
+        return ans.toString();
+        
+        
+    }
+}
