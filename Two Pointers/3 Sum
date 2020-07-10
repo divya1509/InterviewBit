@@ -1,0 +1,29 @@
+public class Solution {
+    public int threeSumClosest(ArrayList<Integer> A, int B) {
+        Collections.sort(A);
+        long ans = 1000000000;
+        
+        for (int i = 0; i < A.size() - 2; i++) {
+            int l = i + 1, r = A.size() - 1;
+            while (l < r) {
+                long temp = A.get(i) + A.get(l) + A.get(r);
+                if (Math.abs(B - temp) <= Math.abs(B - ans)) { 
+                    ans = temp; 
+                } 
+  
+            // If sum is greater then x then decrement 
+            // the second pointer to get a smaller sum 
+                if (temp > B) { 
+                    r--; 
+                } 
+  
+            // Else increment the first pointer 
+            // to get a larger sum 
+                else { 
+                    l++; 
+                } 
+            }
+        }
+        return (int)ans;
+    }
+}
