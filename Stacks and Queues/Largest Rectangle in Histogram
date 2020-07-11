@@ -1,0 +1,45 @@
+public class Solution {
+    private static void left(ArrayList<Integer> A, int[] nsel) {
+        int n = A.size();
+        Stack<Integer> s = new Stack<>();
+        for(int i = 0; i < n; i++) {
+            while(s.size() > 0 && A.get(s.peek()) >= A.get(i) ) {
+                s.pop();
+            }
+            
+            if(s.size() == 0) nsel[i] = -1;
+            else nsel[i] = s.peek();
+            s.push(i);
+        }
+    }
+    
+    private static void right(ArrayList<Integer> A, int[] nser) {
+        int n = A.size();
+        Stack<Integer> s = new Stack<>();
+        for(int i = n - 1; i >= 0; i--) {
+            while(s.size() > 0 && A.get(s.peek()) >= A.get(i) ) {
+                s.pop();
+            }
+            
+            if(s.size() == 0) nser[i] = n;
+            else nser[i] = s.peek();
+            s.push(i);
+        }
+    }
+    
+    public int largestRectangleArea(ArrayList<Integer> A) {
+        int n = A.size();
+        int[] nsel = new int[n];
+        int[] nser = new int[n];
+        
+        left(A, nsel);
+        right(A, nser);
+        
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            int area = (nser[i] - nsel[i] - 1) * A.get(i);
+            ans = Math.max(area, ans);
+        }
+        return ans;
+    }
+}
