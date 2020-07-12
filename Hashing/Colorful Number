@@ -1,0 +1,27 @@
+public class Solution {
+    public int colorful(int A) {
+        Set<Integer> hs = new HashSet<>();
+        
+        ArrayList<Integer> num = new ArrayList<>();
+        while(A > 0) {
+            num.add(A % 10);
+            A /= 10;
+        }
+        
+        Collections.reverse(num);
+        
+        for (int i = 0; i < num.size(); i++) {
+            for (int j = i; j < num.size(); j++) {
+                int prod = 1;
+                for (int k = i; k <= j; k++) {
+                    prod *= num.get(k);
+                }
+             
+                if (hs.contains(prod)) return 0;
+                hs.add(prod);
+            }
+        }
+        return 1;
+        
+    }
+}
