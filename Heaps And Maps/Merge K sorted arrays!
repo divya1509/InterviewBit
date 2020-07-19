@@ -1,0 +1,35 @@
+public class Solution {
+    static class pair implements Comparable<pair> {
+        int rowNum;
+        int colNum;
+        int ele;
+        
+        pair(int a, int b, int c) {
+            this.rowNum = a;
+            this.colNum = b;
+            this.ele = c;
+        }
+        
+        public int compareTo(pair other) {
+            return this.ele - other.ele;
+        }
+    }
+    
+    public ArrayList<Integer> solve(ArrayList<ArrayList<Integer>> A) {
+        
+        PriorityQueue<pair> pq = new PriorityQueue<>();
+        for(int i = 0; i < A.size(); i++) {
+            pq.add(new pair(i, 0, A.get(i).get(0)));
+        }
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        while(pq.size() > 0) {
+            pair curr = pq.poll();
+            ans.add(curr.ele);
+            if(curr.colNum + 1 < A.get(0).size()) {
+                pq.add(new pair(curr.rowNum, curr.colNum + 1, A.get(curr.rowNum).get(curr.colNum + 1)));
+            }
+        }
+        return ans;
+    }
+}
