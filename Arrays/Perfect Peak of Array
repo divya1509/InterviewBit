@@ -1,0 +1,26 @@
+public class Solution {
+    public int perfectPeak(ArrayList<Integer> A) {
+        int n = A.size();
+        if(n == 0) return 0;
+        
+        int[] small = new int[n];
+        int[] large = new int[n];
+        
+        int max = A.get(0);
+        for(int i = 1; i < n; i++) {
+            large[i] = max;
+            max = Math.max(max, A.get(i));
+        }
+        
+        int min = A.get(n - 1);
+        for(int i = n - 2; i >= 0; i--) {
+            small[i] = min;
+            min = Math.min(min, A.get(i));
+        }
+        
+        for(int i = 1; i < n - 1; i++) {
+            if(small[i] > A.get(i) && large[i] < A.get(i) ) return 1;
+        }
+        return 0;
+    }
+}
