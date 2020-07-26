@@ -1,0 +1,27 @@
+public class Solution {
+    public int nchoc(int A, ArrayList<Integer> B) {
+        
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        
+        for(int i = 0; i < B.size(); i++) {
+            pq.add(B.get(i));
+        }
+        
+        long ans = 0, mod = 1000000007;
+        for(int i = 0; i < A && pq.size() > 0; i++) {
+            int k = pq.poll();
+            ans = (ans + k) % mod;
+            if(k < 0) {
+                k =-(int) Math.floor(Math.abs(k) / 2);
+            } else {
+                k =(int) Math.floor(k / 2);
+            }
+            
+            if(k > 0) pq.add(k);
+            
+        }
+        
+        return (int) (ans % mod);
+        
+    }
+}
