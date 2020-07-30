@@ -1,0 +1,27 @@
+public class Solution {
+    public int jump(ArrayList<Integer> A) {
+        
+        int n = A.size();
+        if(n == 1) return 0;
+        
+        if(A.get(0)==0){
+            return -1;
+        }
+    
+        int jumps    = 0;
+        int maxReach = A.get(0);
+        int steps    = A.get(0);
+
+        for (int i = 1; i < n - 1; i++) {
+            maxReach = Math.max(maxReach, i + A.get(i));
+            steps--;
+            if (steps == 0) {
+                jumps++;
+                steps = maxReach - i;
+                if(steps == 0 || steps < 0) return -1;
+            }
+        }
+        return jumps + 1;
+        
+    }
+}
