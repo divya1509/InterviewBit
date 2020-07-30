@@ -1,0 +1,17 @@
+public class Solution {
+    public int canJump(ArrayList<Integer> A) {
+        int n = A.size();
+        boolean[] dp = new boolean[n];
+        dp[n - 1] = true;
+        
+        for(int i = n - 2; i >= 0; i--){
+            int jump = 1;
+            while(jump <= A.get(i) && i + jump < n && !dp[jump + i]){
+                jump++;
+            }
+            
+            if(jump <= A.get(i) && i + jump < n && dp[jump + i] ) dp[i] = true;
+        }
+        return dp[0] == true ? 1 : 0;
+    }
+}
