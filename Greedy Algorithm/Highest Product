@@ -1,0 +1,13 @@
+public class Solution {
+    public int maxp3(ArrayList<Integer> A) {
+        int n = A.size();
+        
+        if(n < 3) return 0;
+        
+        Collections.sort(A);
+        int pos = A.get(n - 1) * A.get(n - 2) * A.get(n - 3);
+        int neg = A.get(0) * A.get(1) * A.get(n - 1);
+        
+        return Math.max(pos, neg);
+    }
+}
