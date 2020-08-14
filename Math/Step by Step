@@ -1,0 +1,14 @@
+public class Solution {
+    public int solve(int A) {
+        if(A == 0) return 0;
+        A = Math.abs(A); 
+        
+        int ans = 0, curr = 0;
+        while (curr < A || (curr - A) % 2 != 0) {
+            ans++;
+            curr += ans;
+        }
+        return ans;
+        
+    }
+}
